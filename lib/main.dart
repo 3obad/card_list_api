@@ -1,9 +1,11 @@
 import 'dart:convert';
 
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/widgets.dart';
+import 'package:flutterlearn/Samples.dart';
 import 'package:http/http.dart' as http;
 
 import 'Doctors.dart';
@@ -34,8 +36,33 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+        onGenerateRoute: (settings) {
+          // If you push the PassArguments route
+          if (settings.name == Samples.routeName) {
+            // Cast the arguments to the correct type: ScreenArguments.
+            final Doctors args = settings.arguments;
+
+            // Then, extract the required data from the arguments and
+            // pass the data to the correct screen.
+            return MaterialPageRoute(
+              builder: (context) {
+                return Samples(
+
+                  doctors: args,
+                );
+              },
+            );
+          }
+          // The code only supports PassArgumentsScreen.routeName right now.
+          // Other values need to be implemented if we add them. The assertion
+          // here will help remind us of that higher up in the call stack, since
+          // this assertion would otherwise fire somewhere in the framework.
+          assert(false, 'Need to implement ${settings.name}');
+          return null;
+        },
+        title: 'Navigation with Arguments',
+
         debugShowCheckedModeBanner: false,
-        title: 'Flutter Demo',
         theme: ThemeData(
           primarySwatch: Colors.yellow,
           visualDensity: VisualDensity.adaptivePlatformDensity,
@@ -118,6 +145,10 @@ class _MyHomePageState extends State<MyHomePage> {
       child: new InkWell(
         onTap: () {
           print("tapped ${data.name}");
+          Navigator.pushNamed(
+            context,
+            Samples.routeName,
+            arguments:  data,);
         },
         child: Flex(direction: Axis.horizontal, children: [
           Expanded(
