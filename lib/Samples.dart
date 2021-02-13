@@ -106,10 +106,10 @@ class _MySamplesListState extends State<MySamplesList> {
       child: new InkWell(
         onTap: () {
           print("tapped ${data.name}");
-          Navigator.pushNamed(
+         /* Navigator.pushNamed(
             context,
             Samples.routeName,
-            arguments:  data,);
+            arguments:  data,);*/
         },
         child: Flex(direction: Axis.horizontal, children: [
           Expanded(
@@ -156,10 +156,10 @@ class _MySamplesListState extends State<MySamplesList> {
                 Padding(
                   padding: const EdgeInsets.only(left: 30, right: 30),
                   child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.end,
                     mainAxisSize: MainAxisSize.min,
                     children: [
-                      MaterialButton(onPressed: () { print("tapped add ${data.name}"); },)
+                      MaterialButton(onPressed: () { print("tapped add ${data.name}"); },color: Colors.red,)
                     ],
                   ),
                 ),
