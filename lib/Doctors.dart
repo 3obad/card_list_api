@@ -45,3 +45,30 @@ class Doctors {
     return data;
   }
 }
+class SamStock {
+  String id;
+  String name;
+  String userId;
+  String quantity;
+  String note;
+
+  SamStock({this.id, this.name, this.userId, this.quantity, this.note});
+
+  SamStock.fromJson(Map<String, dynamic> json) {
+    id = json['id'] as String;
+    name = json['name'] as String;
+    userId = json['user_id'] as String;
+    quantity = json['quantity'] as String;
+    note = json['note'] as String;
+  }
+
+  Map<String, SamStock> toJson() {
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['id'] = this.id;
+    data['name'] = this.name;
+    data['user_id'] = this.userId;
+    data['quantity'] = this.quantity;
+    data['note'] = this.note;
+    return data;
+  }
+}
